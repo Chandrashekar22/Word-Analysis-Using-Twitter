@@ -11,4 +11,5 @@ newtext=""
 for i in range(len(df)):
   newtext+=df.text[i]
 
-stylecloud.gen_stylecloud(text=newtext, icon_name= "fab fa-twitter",stopwords="https", palette="cartocolors.diverging.TealRose_7",collocations=False, background_color="black")
+list=["https","http"]
+stylecloud.gen_stylecloud(text=newtext, icon_name= "fab fa-twitter",custom_stopwords=list, palette="cartocolors.diverging.TealRose_7",collocations=False, background_color="black")
