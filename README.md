@@ -6,7 +6,7 @@ The Analysis contains
 
 *Word Cloud on most used words in tweets
 
-*Top 3 #hashtags used
+*Top 3 frequently used #hashtags
 
 *Tweets with filter based on sentiments 
 
