@@ -5,16 +5,17 @@ import csv
 import tweepy
 import unidecode
 from textblob import TextBlob
+import subprocess
 
 
 # URL CLEANUP
-def url_fix(s, charset='utf-8'):
-    if isinstance(s, unicode):
-        s = s.encode(charset, 'ignore')
-    scheme, netloc, path, qs, anchor = urlparse.urlsplit(s)
-    path = urllib.quote(path, '/%')
-    qs = urllib.quote_plus(qs, ':&=')
-    return urlparse.urlunsplit((scheme, netloc, path, qs, anchor))
+# def url_fix(s, charset='utf-8'):
+#     if isinstance(s, unicode):
+#         s = s.encode(charset, 'ignore')
+#     scheme, netloc, path, qs, anchor = urlparse.urlsplit(s)
+#     path = urllib.quote(path, '/%')
+#     qs = urllib.quote_plus(qs, ':&=')
+#     return urlparse.urlunsplit((scheme, netloc, path, qs, anchor))
 
 
 # COMMAND PARSER
@@ -153,11 +154,11 @@ def tw_search(api):
             hashtag = tweet.entities[u'hashtags'][0][u'text']  # hashtags used
         except:
             hashtag = "None"
-        try:
-            rawurl = tweet.entities[u'urls'][0][u'url']  # URLs used
-            urls = url_fix(rawurl)
-        except:
-            urls = "None"
+        # try:
+        #     rawurl = tweet.entities[u'urls'][0][u'url']  # URLs used
+        #     # urls = url_fix(rawurl)
+        # except:
+        #     urls = "None"
         # AUTHOR INFO
         username = tweet.author.name  # author/user name
         usersince = tweet.author.created_at  # author/user profile creation date
@@ -202,6 +203,11 @@ def main():
     tw_parser()
     api = tw_oauth(authfile)
     tw_search(api)
+
+    cmd='C:/python39/python.exe "e:/complete web development course/projects/tweetpedia_web/visualisation.py"'
+    p=subprocess.Popen(cmd,shell=True)
+    out,err=p.communicate()
+    print(err)
 
 
 if __name__ == "__main__":

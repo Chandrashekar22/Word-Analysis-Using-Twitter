@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
 
-df=pd.read_csv('result.csv')
+df=pd.read_csv('e:/complete web development course/projects/tweetpedia_web/result.csv')
 
 newtext=""
 for i in range(len(df)):
