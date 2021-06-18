@@ -1,11 +1,11 @@
-import argparse
-from urllib.parse import urlparse
-import urllib
-import csv
-import tweepy
-import unidecode
-from textblob import TextBlob
-import subprocess
+import argparse #done
+#from urllib.parse import urlparse
+import urllib #done
+import csv # done
+import tweepy # done
+import unidecode # done
+from textblob import TextBlob #done
+import subprocess #done
 
 
 # URL CLEANUP
@@ -204,10 +204,10 @@ def main():
     api = tw_oauth(authfile)
     tw_search(api)
 
-    cmd='C:/python39/python.exe "e:/complete web development course/projects/tweetpedia_web/visualisation.py"'
-    p=subprocess.Popen(cmd,shell=True)
-    out,err=p.communicate()
-    print(err)
+    cmd='python "./visualisation.py"'
+    p=subprocess.run(cmd)
+    # out,err=p.communicate()
+    # print(err)
 
 
 if __name__ == "__main__":
