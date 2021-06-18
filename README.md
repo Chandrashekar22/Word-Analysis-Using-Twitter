@@ -11,3 +11,10 @@ The Analysis contains
 + Tweets with filter based on sentiments 
 
 + Pie chart on from which devices tweets was tweeted 
+
+### How-to-run
+
++ Clone this repo or download and extract the zip.
++ Run from main directory: `python -m flask run`
++ Open the link obtained in browser
++ Enjoy !!!
