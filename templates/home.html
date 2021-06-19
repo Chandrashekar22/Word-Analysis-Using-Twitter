@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" rel="stylesheet">
-    <link href="/static/stylesheet.css?q=1280549789" rel="stylesheet">
+    <link href="/static/stylesheet.css?q=1280549791" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
     <script type="text/javascript" src="{{url_for('static', filename='js/lib/jquery-3.6.0.min.js')}}"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <title>Tweetpedia</title>
     <!-- <script>
         // Scroll function courtesy of Scott Dowding; http://stackoverflow.com/questions/487073/check-if-element-is-visible-after-scrolling
@@ -62,11 +63,17 @@
         <!-- <div class="line-break"></div> -->
         <div>
             <nav id="the-navbar">
-                    <a href="#">Sentiment</a>
+                    <a href="#" id="senti-btn">Sentiment</a>
                     <a href="#">Tweets</a>
-                    <a href="#">Sources</a>
+                    <div class="menu-item">
+                        <button href="#">All</button>
+                        <button href="#">Positive</button>
+                        <button href="#">Negative</button>
+                        <button href="#">Neutral</button>
+                    </div>
+                    <a href="#" id="source-btn">Sources</a>
                     <a href="#" id="tweet-cloud-btn">Tweet cloud</a>
-                    <a href="#">Hashtags</a>
+                    <a href="#" id="hashtag-btn">Hashtags</a>
                 <div class="animation start-home"></div>
             </nav>
         </div>
