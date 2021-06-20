@@ -63,15 +63,25 @@ $("#hashtag-btn").click(function(e){
 	e.preventDefault();
 	$.get("/hashtag-button", function(data){
 		console.log(data);
-		hashtagLinks = ""
+		// hashtagLinks = ""
+		let hashtagLinks = [];
+		let hashtagTable = "<table class=\"hashtag-table\">"
+		let i = 0
 		data.forEach(function(ele){
-			hashtagLinks += "<a href='https://twitter.com/search?q=%23" + ele + "&src=typeahead_click'>#" + ele + "</a><br>";
+			// hashtagLinks += "<a href='https://twitter.com/search?q=%23" + ele + "&src=typeahead_click'>#" + ele + "</a><br>";
+			// hashtagLinks.append("<a href='https://twitter.com/search?q=%23" + ele + "&src=typeahead_click'>#" + ele + "</a>");
+			i += 1;
+			hashtagLink = "<a href='https://twitter.com/search?q=%23" + ele + "&src=typeahead_click'>#" + ele + "</a>";
+			// console.log(hashtagLink, i);
+			hashtagTable += "<tr><td>" + i +   "</td>" + "<td>" + hashtagLink + "</td></tr>";
 		});
-		$("#output-area").html(hashtagLinks);
+		hashtagTable += "</table>"
+		// console.log(hashtagTable);
+		$("#output-area").html(hashtagTable);
 	});
 });
 
-$("#all-tweets-btn").click(function(e){
+/*$("#all-tweets-btn").click(function(e){
 	e.preventDefault();
 	$.get("/all-tweets-button", function(data){
 		// $("#output-area").html("<iframe src='./templates/alltweets.html'></iframe>")
@@ -79,7 +89,7 @@ $("#all-tweets-btn").click(function(e){
 
 	});
 	// $("#output-area").html("<iframe src='/templates/alltweets.html'></iframe>")
-});
+});*/
 
 $("#search-form").submit(function(e){
 	// e.preventDefault();
@@ -87,7 +97,26 @@ $("#search-form").submit(function(e){
 	// $.post("/search-form", $(".searchInput").val(), function(data){
 	// 	console.log("value posted" + data);
 	// },"json");
-})
+});
+
+$("#tweets-btn").click(function(e){
+	e.preventDefault();
+	console.log("Tweets btn clicked");
+});
+
+$("#the-navbar .menu-item > button").click(function(e){
+	console.log("select drop down");
+	console.log(e.target.id);
+	const targetId = e.target.id;
+	const targetIds = ["all-tweets-btn", "pos-tweets-btn", "neg-tweets-btn", "neut-tweets-btn"];
+	const posTarget = +(targetIds.indexOf(e.target.id)) + 1
+	console.log("Position of child: "+ posTarget);
+	$.get("/tweets-button", posTarget.toString(), function(data){
+		// console.log(data);
+		$("#output-area").html(data);
+		$("#output-area").css("overflow-y", "auto");
+	});
+});
 /*function drawChart(data) {
 
     data = google.visualization.arrayToDataTable(data);
