@@ -48,10 +48,10 @@
     <h2 class="new-section">Tweetpedia<i class="fab fa-twitter" style="font-size:65px"></i></h2>
     <div class="scroll-animations">
         <div>
-            <form method="POST" action="/" class="form-inline">
+            <form method="POST" action="/search-form" class="form-inline" id="search-form">
                 <div class="searchBox">
                     <input class="searchInput" type="text" name="search" id="search" placeholder="Search">
-                    <button type="submit" class="searchButton" href="#"> 
+                    <button type="submit" class="searchButton"> 
                         <i class="fab fa-twitter fa-spin" style="font-size:30px;color:rgb(0, 128, 255)"></i>
             </button>
                 </div>
@@ -66,7 +66,7 @@
                     <a href="#" id="senti-btn">Sentiment</a>
                     <a href="#">Tweets</a>
                     <div class="menu-item">
-                        <button href="#">All</button>
+                        <button id="all-tweets-btn">All</button>
                         <button href="#">Positive</button>
                         <button href="#">Negative</button>
                         <button href="#">Neutral</button>
