@@ -25,7 +25,6 @@ def tweet():
 		post=request.form['search']
 		cmd=' python "./twitter_search.py " {}'.format(post)
 		p=subprocess.run(cmd,shell=True)
-		tweetsFilter()
 	# return jsonify({'success':True}), 200, {'ContentType':'application/json'}
 	return render_template('home.html')
 
