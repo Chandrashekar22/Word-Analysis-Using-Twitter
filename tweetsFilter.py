@@ -26,13 +26,13 @@ def tweetsFilter(pos):
 		allhtml = df.to_html(classes = "styled-table", justify = "center", index = False, columns = ["created","username","text"])
 		return allhtml
 	elif pos == 2:
-		poshtml = posdf.to_html(classes = "styled-table", justify = "center", )
+		poshtml = posdf.to_html(classes = "styled-table", justify = "center", index = False, columns = ["created","username","text"])
 		return poshtml
 	elif pos == 3:
-		neghtml = negdf.to_html(classes = "styled-table", justify = "center")
+		neghtml = negdf.to_html(classes = "styled-table", justify = "center", index = False, columns = ["created","username","text"])
 		return neghtml
 	elif pos == 4:
-		neuthtml = neutdf.to_html(classes = "styled-table", justify = "center")
+		neuthtml = neutdf.to_html(classes = "styled-table", justify = "center", index = False, columns = ["created","username","text"])
 		return neuthtml
 	else:
 		return "Invalid button/position passed"	
