@@ -3,9 +3,8 @@ import numpy as np
 import warnings
 warnings.filterwarnings("ignore")
 
-df=pd.read_csv('result.csv')
-
 def hashtagCount():
+	df=pd.read_csv('result.csv')
 	hash_values = df['hashtag'].value_counts().keys().tolist()
 	# hash_counts = df['hashtag'].value_counts().tolist()
 
@@ -16,6 +15,7 @@ def hashtagCount():
 	return hash_values
 
 def sourceCount():
+	df=pd.read_csv('result.csv')
 	src_values = df['source'].value_counts().keys().tolist()
 	src_counts = df['source'].value_counts().tolist()
 
