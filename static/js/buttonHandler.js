@@ -70,6 +70,24 @@ $("#hashtag-btn").click(function(e){
 		$("#output-area").html(hashtagLinks);
 	});
 });
+
+$("#all-tweets-btn").click(function(e){
+	e.preventDefault();
+	$.get("/all-tweets-button", function(data){
+		// $("#output-area").html("<iframe src='./templates/alltweets.html'></iframe>")
+		$("#output-area").html("<iframe src=\"{{ url_for('static',filename='alltweets.html') }}\"></iframe>")
+
+	});
+	// $("#output-area").html("<iframe src='/templates/alltweets.html'></iframe>")
+});
+
+$("#search-form").submit(function(e){
+	// e.preventDefault();
+	console.log($(".searchInput").val());
+	// $.post("/search-form", $(".searchInput").val(), function(data){
+	// 	console.log("value posted" + data);
+	// },"json");
+})
 /*function drawChart(data) {
 
     data = google.visualization.arrayToDataTable(data);
