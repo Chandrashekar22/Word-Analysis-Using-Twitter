@@ -45,10 +45,10 @@ def giveHashtagData():
 	topThreeHashtag = hashtagCount()[0:3]
 	return jsonify(topThreeHashtag)
 
-@app.route('/all-tweets-button', methods=['GET','POST'])
+@app.route('/tweets-button', methods=['GET'])
 def displayAllTweets():
-	# tweetsFilter()
-	return render_template('alltweets.html')
-
+	btnPos = list(request.args.keys())[0];
+	return tweetsFilter(int(btnPos))
+	
 if __name__=="__main__":
     app.run(debug=True)
