@@ -3,6 +3,8 @@ let b2 = document.getElementsByClassName("new-section")[0].clientHeight;
 let b3 = document.getElementsByClassName("scroll-animations")[0].clientHeight;
 let aw = document.getElementById("the-navbar");
 
+$.ajaxSetup({ cache: false });
+
 google.charts.load('current', {'packages':['corechart']});
 
 // $("#output-area").css("height", "calc(100vh - " + (b1-b2));
@@ -12,19 +14,21 @@ $("#output-area").css("width", (aw.clientWidth - 20) + "px");
 
 $("#tweet-cloud-btn").click(function(e){
 	e.preventDefault();
-	console.log("yaho");
-    //$("body").append("<img src='{{url_for('static', filename='img/stylecloud.png')}}'>");
-    $("#output-area").html("<img src='/static/img/stylecloud.png'>");     
+	const srt = sessionStorage.getItem("searchTerm");
+	const imgPath = "<img src='/static/img/stylecloud_" + srt + ".png'>";
+	console.log("yaho",imgPath);
+  $("#output-area").html(imgPath);   
 });
 
 $("#senti-btn").click(function(e){
 	e.preventDefault();
 	$.get("/senti-button", function(data){
 		console.log(data);
+		const srt = sessionStorage.getItem("searchTerm");
 		google.charts.setOnLoadCallback(function(){
 			data1 = google.visualization.arrayToDataTable(data);
 		    let options = {
-		      title: 'Sentiment Pie-Chart'
+		      title: 'Sentiment Pie-Chart: ' + srt
 		    };
 
 		    let chart = new google.visualization.PieChart(document.getElementById('output-area'));
@@ -33,9 +37,6 @@ $("#senti-btn").click(function(e){
 
 		});
 	});
-	
-    // google.charts.setOnLoadCallback(drawChart);
-
 });
 
 $("#source-btn").click(function(e){
@@ -43,10 +44,11 @@ $("#source-btn").click(function(e){
 	$.get("/source-button", function(data){
 		console.log(data);
 		console.log(data.slice(0,10));
+		const srt = sessionStorage.getItem("searchTerm");
 		google.charts.setOnLoadCallback(function(){
 			data1 = google.visualization.arrayToDataTable(data.slice(0,10));
 		    let options = {
-		      title: 'Source Donut-Chart',
+		      title: 'Source Donut-Chart: ' + srt,
 		      pieHole: 0.4
 		    };
 
@@ -56,7 +58,6 @@ $("#source-btn").click(function(e){
 
 		});
 	});
-	// google.charts.load('current', {'packages':['corechart']});
 });
 
 $("#hashtag-btn").click(function(e){
@@ -81,22 +82,14 @@ $("#hashtag-btn").click(function(e){
 	});
 });
 
-/*$("#all-tweets-btn").click(function(e){
-	e.preventDefault();
-	$.get("/all-tweets-button", function(data){
-		// $("#output-area").html("<iframe src='./templates/alltweets.html'></iframe>")
-		$("#output-area").html("<iframe src=\"{{ url_for('static',filename='alltweets.html') }}\"></iframe>")
-
-	});
-	// $("#output-area").html("<iframe src='/templates/alltweets.html'></iframe>")
-});*/
-
 $("#search-form").submit(function(e){
-	// e.preventDefault();
-	console.log($(".searchInput").val());
-	// $.post("/search-form", $(".searchInput").val(), function(data){
-	// 	console.log("value posted" + data);
-	// },"json");
+	e.preventDefault();
+	const st = $(".searchInput").val();
+	console.log(st);
+	sessionStorage.setItem("searchTerm", st);
+	$.post("/search-form", {search: st}, function(data){
+	 	console.log("value posted and server returned" + JSON.stringify(data));
+	 },"json");
 });
 
 $("#tweets-btn").click(function(e){
@@ -117,22 +110,3 @@ $("#the-navbar .menu-item > button").click(function(e){
 		$("#output-area").css("overflow-y", "auto");
 	});
 });
-/*function drawChart(data) {
-
-    data = google.visualization.arrayToDataTable(data);
-
-    var options = {
-      title: 'My Daily Activities'
-    };
-
-    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-    chart.draw(data, options);
-}*/
-// use below in case event does not register
-/*$(document).on('click','#tweet-cloud-btn',function(e){
-	e.preventDefault();
-	console.log("yaho");
-    // $("body").append("<img src='{{url_for('static', filename='img/stylecloud.png')}}'>");    
-    $("body").append("<img src='/static/img/stylecloud.png'>"); 
-});*/
