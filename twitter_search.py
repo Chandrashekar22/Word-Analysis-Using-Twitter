@@ -203,8 +203,9 @@ def main():
     tw_parser()
     api = tw_oauth(authfile)
     tw_search(api)
+    # print(qw)
 
-    cmd='python "./visualisation.py"'
+    cmd='python "./visualisation.py" {}'.format(qw)
     p=subprocess.run(cmd)
     # out,err=p.communicate()
     # print(err)

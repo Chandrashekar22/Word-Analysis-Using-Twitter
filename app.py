@@ -9,10 +9,17 @@ from hash_src import sourceCount,hashtagCount
 from tweetsFilter import tweetsFilter
 
 app=Flask(__name__)
+app.debug=True
 
-# @app.route("/")
-# def home():
-#     return render_template('home.html')
+# @app.after_request
+# def add_header(response):
+#     """
+#     Add headers to both force latest IE rendering engine or Chrome Frame,
+#     and also to cache the rendered page for 10 minutes.
+#     """
+#     response.headers['Cache-Control'] = 'no-store'
+#     return response
+
 @app.route('/',methods=['GET','POST'])
 def home():
 	return render_template('home.html')
@@ -25,8 +32,8 @@ def tweet():
 		post=request.form['search']
 		cmd=' python "./twitter_search.py " {}'.format(post)
 		p=subprocess.run(cmd,shell=True)
-	# return jsonify({'success':True}), 200, {'ContentType':'application/json'}
-	return render_template('home.html')
+	return jsonify({'success':True}), 200, {'ContentType':'application/json'}
+	# return render_template('home.html', searchTerm = post)
 
 @app.route('/senti-button', methods=['GET','POST'])
 def giveSentiData():
